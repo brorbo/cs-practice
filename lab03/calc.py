@@ -1,3 +1,3 @@
 a,b = int(input()), int(input())
-otv = a-b
+otv = a*b
 print(otv)
