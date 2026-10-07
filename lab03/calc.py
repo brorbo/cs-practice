@@ -1,3 +1,6 @@
 a,b = int(input()), int(input())
-otv = a*b
+if b != 0:
+    otv = a/b
+else:
+    otv = 'Делить на ноль нельзя!'
 print(otv)
