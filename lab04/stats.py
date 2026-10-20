@@ -1,44 +1,42 @@
+total = 0
+
 def parse_record(line:str):
     inf = line.split(sep = ';')
     if len(inf) != 3: raise ValueError('number of fields should be 3')
-    elif any(i for i in inf = ''): raise ValueError('not enough data')
+    elif any(i == '' for i in inf): raise ValueError('not enough data')
     else: city, date = inf[0], inf[2]
-        try: temp = float(inf[1])
-        except: raise ValueError('temperature should be float data type')
+    try: temp = float(inf[1])
+    except: raise ValueError('temperature should be float data type')
     return {
-        'city': city
-        'temp': temp
-        'date': date
+        'city': city,
+        'temp': temp,
+        'date': date,
         }
+
 
 def read_valid(lines: list[str]):
     ret = [] 
     for line in lines:
-        try: ret += parse_record(line)
+        try: ret += [parse_record(line)]
         except: ...
     return ret
 
-def warmest_city(records: list[dict]):
-    if total in globals():
-        mx = max(total, key = lambda x: x[1] / x[2])
-    else:
-        total = {}
+def total(records: list[dict]):
+    totals = {}
     for city in records:
         try:
-            total[city['city']][1] += city['temp']
-            total[city['city']][2] += 1
+            totals[city['city']][1] += city['temp']
+            totals[city['city']][2] += 1
         except:
-            total[city['city']] = city['city'], city['temp'], 1
-    mx = max(total, key = lambda x: x[1] / x[2])
-    return(mx[0])
+            totals[city['city']] = [city['city'], city['temp'], 1]
+    return totals
 
-def average_by_city(records: list[dict])
-    if total in globals():
-        temps = [
-    total = {}
-    for city in records:
-        try:
-            total[city['city']][1] += city['temp']
-            total[city['city']][2] += 1
-        except:
-            total[city['city']] = city['city'], city['temp'], 1
+def warmest_city(records: list[dict]):
+    tot = total(records)
+    mx = tot[max(tot, key = lambda x: tot[x][1] / tot[x][2])]
+    return(mx[0]) ## в mx город, сумма темп-ры и кол-во строк
+
+def average_by_city(records: list[dict]):
+    tot = total(records)
+    avtemps = {i: tot[i][1] / tot[i][2] for i in tot}
+    return avtemps
