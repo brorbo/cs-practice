@@ -16,5 +16,29 @@ def read_valid(lines: list[str]):
     for line in lines:
         try: ret += parse_record(line)
         except: ...
-    return re
-        
+    return ret
+
+def warmest_city(records: list[dict]):
+    if total in globals():
+        mx = max(total, key = lambda x: x[1] / x[2])
+    else:
+        total = {}
+    for city in records:
+        try:
+            total[city['city']][1] += city['temp']
+            total[city['city']][2] += 1
+        except:
+            total[city['city']] = city['city'], city['temp'], 1
+    mx = max(total, key = lambda x: x[1] / x[2])
+    return(mx[0])
+
+def average_by_city(records: list[dict])
+    if total in globals():
+        temps = [
+    total = {}
+    for city in records:
+        try:
+            total[city['city']][1] += city['temp']
+            total[city['city']][2] += 1
+        except:
+            total[city['city']] = city['city'], city['temp'], 1
