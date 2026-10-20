@@ -7,7 +7,7 @@ def parse_record(line:str):
     except: raise ValueError('temperature should be float data type')
     return {
         'city': city,
-        'temp': temp,
+        'temperature': temp,
         'date': date,
         }
 
@@ -23,10 +23,10 @@ def total(records: list[dict]):
     totals = {}
     for city in records:
         try:
-            totals[city['city']][1] += city['temp']
+            totals[city['city']][1] += city['temperature']
             totals[city['city']][2] += 1
         except:
-            totals[city['city']] = [city['city'], city['temp'], 1]
+            totals[city['city']] = [city['city'], city['temperature'], 1]
     return totals
 
 def warmest_city(records: list[dict]):
