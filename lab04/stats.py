@@ -1,5 +1,3 @@
-total = 0
-
 def parse_record(line:str):
     inf = line.split(sep = ';')
     if len(inf) != 3: raise ValueError('number of fields should be 3')
