@@ -13,7 +13,7 @@ def parse_event(line: str):
     return ret
 
 def count_levels(lines: list[str]):
-    cnt = {'DEBUG': 0, 'INFO': 0, 'WARNING' : 0, 'ERROR': 0, 'BROKEN': 0}
+    cnt = {'BROKEN': 0, 'DEBUG': 0, 'ERROR' : 0, 'INFO': 0, 'WARNING': 0}
     for line in lines:
         try: cnt[parse_event(line)['level']] += 1
         except: cnt['BROKEN'] += 1
