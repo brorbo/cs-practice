@@ -2,7 +2,7 @@ def parse_record(line:str):
     inf = line.split(sep = ';'); inf[1] = inf[1].replace(',', '.')
     if len(inf) != 3: raise ValueError('number of fields should be 3')
     elif any(i == '' for i in inf): raise ValueError('not enough data')
-    else: city, date = inf[0], inf[2]
+    else: city, date = inf[0].strip(), inf[2].strip()
     try: temp = float(inf[1])
     except: raise ValueError('temperature should be float data type')
     return {
