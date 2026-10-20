@@ -1,3 +1,4 @@
+
 def parse_record(line:str):
     inf = line.split(sep = ';'); inf[1] = inf[1].replace(',', '.')
     if len(inf) != 3: raise ValueError('number of fields should be 3')
@@ -30,7 +31,7 @@ def total(records: list[dict]):
 
 def warmest_city(records: list[dict]):
     tot = total(records)
-    mx = tot[max(tot, key = lambda x: tot[x][1] / tot[x][2])]
+    mx = tot[max(tot, key = lambda x: (tot[x][1] / tot[x][2], 5000 - ord(x[0])) )]
     return(mx[0]) ## в mx город, сумма темп-ры и кол-во строк
 
 def average_by_city(records: list[dict]):
