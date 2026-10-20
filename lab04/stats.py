@@ -1,5 +1,5 @@
 def parse_record(line:str):
-    inf = line.split(sep = ';')
+    inf = line.split(sep = ';'); inf[1] = inf[1].replace(',', '.')
     if len(inf) != 3: raise ValueError('number of fields should be 3')
     elif any(i == '' for i in inf): raise ValueError('not enough data')
     else: city, date = inf[0], inf[2]
@@ -10,7 +10,6 @@ def parse_record(line:str):
         'temperature': temp,
         'date': date,
         }
-
 
 def read_valid(lines: list[str]):
     ret = [] 

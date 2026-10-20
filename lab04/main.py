@@ -1,7 +1,7 @@
 from stats import average_by_city, read_valid, warmest_city, total
 import sys
 
-lines = sys.stdin.read().splitlines()
+lines = [i for i in sys.stdin.read().splitlines() if i != '']
 
 data = read_valid(lines)
 
