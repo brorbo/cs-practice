@@ -1,6 +1,7 @@
 from logstats import parse_event, count_levels, top_errors, format_report
+import sys
 
-path = input()
+path = sys.stdin.read()[:-1]
 
 with open(path, encoding="utf-8") as log:
     total = count_levels(log)
