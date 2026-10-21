@@ -41,7 +41,7 @@ def format_report(counts: dict, errors: list[list]):
         report += f'{i}: {counts[i]}\n'
     report += '\nЧастые ошибки:\n'
     for i in errors:
-        report += f'— {i[0]} — {i[1]}\n'
+        report += f'- {i[0]} — {i[1]}\n'
     return report 
      
         
