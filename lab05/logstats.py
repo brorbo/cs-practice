@@ -1,34 +1,24 @@
 def parse_event(line: str):
     inf = line.split(maxsplit = 2)
-    if len(inf) == 2:
-        ret = {
-        'time': inf[0],
-        'level': inf[1],
-        }
-    elif not(inf[1] in ('DEBUG, INFO, WARNING, ERROR')):
+    if not(inf[1] in ('DEBUG, INFO, WARNING, ERROR')):
         raise ValueError('invalid level')
     elif any(i == '' for i in inf):
         raise ValueError('empty part(s) in string')
-    else: ret = {
-        'time': inf[0],
-        'level': inf[1],
-        'message': inf[2],
-        }
+    else: ret = {'time': inf[0],'level': inf[1], 'message': inf[2],} \
+                if len(inf) == 3 else {'time': inf[0], 'level': inf[1],}
     return ret
 
 def count_levels(lines: list[str]):
     cnt = {'BROKEN': 0, 'DEBUG': 0, 'ERROR' : 0, 'INFO': 0, 'WARNING': 0}
-    if lines == []: return cnt 
     for line in lines:
         if line != '':
             try: cnt[parse_event(line)['level']] += 1
             except: cnt['BROKEN'] += 1
-    for i in cnt:
-        if cnt[i] == 0: del cnt[i]
+    cnt = {k: v for k, v in cnt.items() if v != 0}
     return cnt
 
 def top_errors(lines: list[str], n: int):
-    top = [[]] * n; cnt = {};
+    top = [['', 0]] * n; cnt = {};
     if lines == []: return top
     for line in lines:
         if line != '':
@@ -51,7 +41,7 @@ def format_report(counts: dict, errors: list[list]):
         report += f'{i}: {counts[i]}\n'
     report += '\nЧастые ошибки:\n'
     for i in errors:
-        report += f'- {i[0]} - {i[1]}\n'
+        report += f'— {i[0]} — {i[1]}\n'
     return report 
      
         
