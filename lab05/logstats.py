@@ -19,22 +19,31 @@ def count_levels(lines: list[str]):
     return cnt
 
 def top_errors(lines: list[str], n: int):
-    top = [['', 0]] * n; cnt = {};
-    if lines == []: return top
+    cnt = {}
+
     for line in lines:
-        if line != '':
+        if line.strip():
             try:
                 inf = parse_event(line)
+
                 if inf['level'] == 'ERROR':
-                    try: cnt[inf['message']] += 1
-                    except: cnt[inf['message']] = 1
-            except:
-                ...
+                    if inf['message'] not in cnt:
+                        cnt[inf['message']] = 0
+
+                    cnt[inf['message']] += 1
+
+            except ValueError:
+                pass
+
     cnt = dict(sorted(cnt.items()))
-    for i in range(n):
-        err = max(cnt, key = lambda x: cnt[x])
-        top[i] = [err, cnt.pop(err)] 
+    top = []
+
+    for i in range(min(n, len(cnt))):
+        err = max(cnt, key=lambda x: cnt[x])
+        top.append([err, cnt.pop(err)])
+
     return top
+   
 
 def format_report(counts: dict, errors: list[list]):
     report = 'Отчёт по журналу\n\n'
