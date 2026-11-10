@@ -1,10 +1,10 @@
 def parse_event(line: str):
     inf = line.split(maxsplit=2)
-    inf[2] = inf[2].strip()
     
     if len(inf) != 3:
         raise ValueError('invalid format')
-
+    inf[2] = inf[2].strip()
+    
     if inf[1] not in ('DEBUG', 'INFO', 'WARNING', 'ERROR'):
         raise ValueError('invalid level')
 
@@ -13,7 +13,7 @@ def parse_event(line: str):
 def count_levels(lines: list[str]):
     cnt = {'BROKEN': 0, 'DEBUG': 0, 'ERROR' : 0, 'INFO': 0, 'WARNING': 0}
     for line in lines:
-        if line != '':
+        if line.strip():
             try: cnt[parse_event(line)['level']] += 1
             except: cnt['BROKEN'] += 1
     cnt = {k: v for k, v in cnt.items() if v != 0}
