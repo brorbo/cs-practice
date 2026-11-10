@@ -47,7 +47,7 @@ def top_errors(lines: list[str], n: int):
 
 def format_report(counts: dict, errors: list[list]):
     report = 'Отчёт по журналу\n\n'
-    for i in counts:
+    for i in sorted(counts):
         report += f'{i}: {counts[i]}\n'
     report += '\nЧастые ошибки:\n'
     for i in errors:
