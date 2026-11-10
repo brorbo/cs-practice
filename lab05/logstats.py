@@ -1,12 +1,13 @@
 def parse_event(line: str):
-    inf = line.split(maxsplit = 2)
-    if not(inf[1] in ('DEBUG, INFO, WARNING, ERROR')):
+    inf = line.split(maxsplit=2)
+
+    if len(inf) != 3:
+        raise ValueError('invalid format')
+
+    if inf[1] not in ('DEBUG', 'INFO', 'WARNING', 'ERROR'):
         raise ValueError('invalid level')
-    elif any(i == '' for i in inf):
-        raise ValueError('empty part(s) in string')
-    else: ret = {'time': inf[0],'level': inf[1], 'message': inf[2],} \
-                if len(inf) == 3 else {'time': inf[0], 'level': inf[1],}
-    return ret
+
+    return {'time': inf[0], 'level': inf[1], 'message': inf[2]}
 
 def count_levels(lines: list[str]):
     cnt = {'BROKEN': 0, 'DEBUG': 0, 'ERROR' : 0, 'INFO': 0, 'WARNING': 0}
