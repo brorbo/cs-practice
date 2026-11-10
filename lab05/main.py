@@ -1,7 +1,7 @@
 from logstats import parse_event, count_levels, top_errors, format_report
 import sys
 
-path = sys.stdin.read()[:-1]
+path = sys.stdin.readline().strip()
 
 with open(path, encoding="utf-8") as log:
     total = count_levels(log)
@@ -9,8 +9,10 @@ with open(path, encoding="utf-8") as log:
 with open(path, encoding="utf-8") as log:
     errors = top_errors(log, 3)
 
-strcnt, errcnt, brkncnt = sum(total[i] for i in total), \
-                          total['ERROR'], total['BROKEN']
+strcnt = sum(total.values())
+errcnt = total.get('ERROR', 0)
+brkncnt = total.get('BROKEN', 0)
+
 print(strcnt, errcnt, brkncnt, sep = '\n')
 
 rprt = format_report(total, map(lambda x: [x[0][:-1], x[1]], errors))
