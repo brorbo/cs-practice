@@ -12,7 +12,7 @@ def count_by_extension(lstpaths: list[str]):
     return ret
 
 def deepest_path(paths: list[str]):
-    return max(paths, key = lambda x: x.count('/'))
+    return max(paths, key = lambda x: x.count('/')) if len(paths) > 0 else ''
 
 def human_size(n_bytes: int):
     types = ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ']
