@@ -1,6 +1,7 @@
 def parse_event(line: str):
     inf = line.split(maxsplit=2)
-
+    inf[2] = inf[2].strip()
+    
     if len(inf) != 3:
         raise ValueError('invalid format')
 
