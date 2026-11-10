@@ -4,8 +4,7 @@ from pathlib import Path
 paths = ["docs/report.PDF", "notes.txt", "docs/img/logo.png", "Makefile"]
 
 def count_by_extension(lstpaths: list[str]):
-    files = [f.split('.')[-1].lower() if f.count('.') > 0 and '/' not in f.split('.')[-1] \
-             else '' for f in lstpaths]
+    files = files = [Path(f).suffix[1:].lower() for f in lstpaths]
     ret = defaultdict(int)
     for file in files:
         ret[file] += 1
