@@ -15,7 +15,7 @@ brkncnt = total.get('BROKEN', 0)
 
 print(strcnt, errcnt, brkncnt, sep = '\n')
 
-rprt = format_report(total, map(lambda x: [x[0][:-1], x[1]], errors))
+rprt = format_report(total, errors)
 
 with open('report.txt', 'w', encoding="utf-8") as report:
     report.write(rprt)
