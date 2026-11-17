@@ -51,7 +51,7 @@ def records_to_json(records: list[dict]): # -> str
             ret += f'    "{elem}": "{records[dct][elem]}",\n'.replace('"True"', 'true').replace(\
                 '"False"', 'false')
         ret = ret[:-2] + '\n  },\n'
-    ret = ret[:-2]
+    ret = ret[:-2] + '\n]'
     return ret
 
 
