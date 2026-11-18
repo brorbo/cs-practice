@@ -24,6 +24,7 @@ def parse_settings(lines: list[str]):  ## --> dict
     if flag: ret[lstnam] = lst
     for i in ret:
         if isinstance(ret[i], str):
+            ret[i] = ret[i].strip('"').strip("'")
             if ret[i] in ('true', 'yes'): ret[i] = True
             elif ret[i] in ('false', 'no'): ret[i] = False
             else:
