@@ -31,7 +31,9 @@ def parse_settings(lines: list[str]):  ## --> dict
                 except:
                     try: ret[i] = float(ret[i])
                     except:
-                        ...
+                        try: ret[i] = float(ret[i].replace(',', '.'))
+                        except:
+                            ...
     return ret
         
 def merge_by_key(rows: list[dict], extra: dict, key: str = 'id'):  # -> list[dict]
