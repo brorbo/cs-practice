@@ -31,4 +31,32 @@ print(temperatures.shape, temperatures.size, temperatures[1][2], temperatures[0]
 print()
 
 matrix = np.arange(1, 26).reshape(5, 5)
+n1 = matrix[:3]; n2 = matrix[-2:]; n3 = matrix[:, -2:]; n4 = matrix[1:4, 2:5]; n5 = matrix[-2:, -2:]
 
+print(n1, n1.shape, n2, n2.shape, n3, n3.shape, n4, n4.shape, n5, n5.shape, sep = '\n')
+print()
+
+vector = np.array([10, 20, 30, 40, 50])
+
+vector[1:4] = 0
+
+small_matrix = np.arange(1, 10).reshape(3, 3)
+small_matrix[0, :] = -1
+small_matrix[1:, 1:] = 9
+
+changed_hours = hours.copy()
+changed_hours[2:5] = 99
+changed_hours[::2] = -1
+print(changed_hours, '\n')
+
+##  copy() инициализирует создание отдельного массива для новой переменной,
+##  а не просто присваивает новое имя старому, поэтому когда мы вносим изменения,
+##  используя новую переменную, видоизменяется не изначальный массив, а новый, созданный
+
+numbers = np.arange(12)
+table = numbers.copy().reshape(3, 4)
+transposed  = table.copy().T
+print(numbers, table, transposed, sep = '\n')
+
+##  для reshape() важно, чтобы кол-во элементов в исходной и желаемой совпадали.
+##  в исходной их 12, в матрице 3 на 4 (умножим) также 12, а 5 * 3 = 15.
