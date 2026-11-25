@@ -6,4 +6,16 @@ fahrenheit = arr * 9 / 5 + 32
 
 
 def make_hours(): # -> list[int]
-    return nз
+    return np.arange(0, 21, 3)
+
+def vector_report(values: list[float]): #  -> dict
+    return {
+        'third': values[2],
+        'last': values[-1],
+        'middle': values[2:6],
+        'every_second': values[::2],
+        'reversed': values[::-1],
+        }
+
+def change_vector(values: list[float]): # -> list[float]
+    retvector = np.array(values) 
